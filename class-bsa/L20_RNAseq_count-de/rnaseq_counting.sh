@@ -1,26 +1,26 @@
 
-cd /workspaces/class-rnaseq
+cd /workspace/class-rnaseq
 mkdir -p analysis
 cd analysis
 
 ## instead of copying - we create symbolic links to the original reads
 mkdir reads
 cd reads
-ln -s /workspaces/class-rnaseq/datasets-class-rnaseq/raw_data/* .
+ln -s /workspace/class-rnaseq/datasets-class-rnaseq/raw_data/* .
 
 ### check if you can execute salmon by typing "salmon" on the terminal
 ## sometimes it fails on RStudio terminal, on CodeSpaces while it works on GitPod
 ## export PATH=${PATH}:/usr/local/bin
 
 ## the index for the transcriptome is located in
-## /workspaces/class-rnaseq/datasets_reference_only/trascriptome/chr21_transcripts_index
+## /workspace/class-rnaseq/datasets_reference_only/trascriptome/chr21_transcripts_index
 
 ## now we can quantify all samples, by running a loop with salmon and the following
 
 
 for sample in `ls *_1.fasta.gz`
 do
-index="/workspaces/class-rnaseq/datasets_reference_only/trascriptome/chr21_transcripts_index"
+index="/workspace/class-rnaseq/datasets_reference_only/trascriptome/chr21_transcripts_index"
 name=${sample%_1.fasta.gz}
 echo "quantifying $name"
 salmon quant \

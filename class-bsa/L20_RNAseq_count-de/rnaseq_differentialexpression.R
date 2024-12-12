@@ -10,7 +10,7 @@ library(org.Hs.eg.db)
 ## PREPARE DATASET CONDITIONS #####
 ###################################
 
-setwd("/workspaces/class-rnaseq/analysis")
+setwd("/workspace/class-rnaseq/analysis")
 
 dataset <- tibble(
   sample = c("sample_01",
@@ -22,14 +22,14 @@ dataset <- tibble(
   condition = c(rep("control", 3),
                 rep("case", 3))
 )
-tx2gene <- read_tsv("/workspaces/class-rnaseq/datasets_reference_only/trascriptome/gencode.v29.transcripts_no-vers_chr21_tx2gene.txt")
+tx2gene <- read_tsv("/workspace/class-rnaseq/datasets_reference_only/trascriptome/gencode.v29.transcripts_no-vers_chr21_tx2gene.txt")
 
 
 ###################################
 #### READ LOCAL FILES IN ##########
 ###################################
 
-files <- file.path("/workspaces/class-rnaseq/analysis/reads/", paste0(dataset$sample,".quant"), "quant.sf")
+files <- file.path("/workspace/class-rnaseq/analysis/reads/", paste0(dataset$sample,".quant"), "quant.sf")
 names(files) <- dataset$sample
 
 txi <- tximport(files, type = "salmon", tx2gene = tx2gene)
@@ -84,7 +84,7 @@ save.image("deseq2_analysis.RData")
 
 
 #### on bash
-# cd /workspaces/class-rnaseq/analysis
+# cd /workspace/class-rnaseq/analysis
 # git add deseq2_analysis.RData 
 # git commit -m "saving analysis"
 # git push
